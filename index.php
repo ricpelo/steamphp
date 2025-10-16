@@ -18,6 +18,7 @@
             <th>Dirección</th>
             <th>Código postal</th>
             <th>Teléfono</th>
+            <th>Acciones</th>
         </thead>
         <tbody>
             <?php foreach ($sent as $fila): ?>
@@ -28,6 +29,12 @@
                     <td><?= $fila['direccion'] ?></td>
                     <td><?= $fila['codpostal'] ?></td>
                     <td><?= $fila['telefono'] ?></td>
+                    <td>
+                        <form action="borrar.php" method="post">
+                            <input type="hidden" name="id" value="<?= $fila['id'] ?>">
+                            <button type="submit">Borrar</button>
+                        </form>
+                    </td>
                 </tr>
             <?php endforeach ?>
         </tbody>
