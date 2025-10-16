@@ -7,7 +7,9 @@
 </head>
 <body>
     <?php
-    $pdo = new PDO('pgsql:host=localhost;dbname=steam', 'steam', 'steam');
+    require 'auxiliar.php';
+
+    $pdo = conectar();
     $sent = $pdo->query('SELECT * FROM clientes');
     ?>
     <table border="1">
