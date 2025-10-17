@@ -8,7 +8,7 @@ CREATE TABLE clientes (
     nombre    VARCHAR(255)  NOT NULL,
     apellidos VARCHAR(255),
     direccion VARCHAR(255),
-    codpostal NUMERIC(5)    CHECK (codpostal >= 0),
+    codpostal NUMERIC(5),
     telefono  VARCHAR(255)
 );
 
