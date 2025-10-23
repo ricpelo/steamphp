@@ -52,11 +52,12 @@
         <input type="text" id="apellidos" name="apellidos" value="<?= $apellidos ?>"><br>
         <label for="direccion">Dirección: </label>
         <input type="text" id="direccion" name="direccion" value="<?= $direccion ?>"><br>
-        <label for="codpostal">Código postal:* </label>
+        <label for="codpostal">Código postal: </label>
         <input type="text" id="codpostal" name="codpostal" value="<?= $codpostal ?>"><br>
         <label for="telefono">Teléfono: </label>
         <input type="text" id="telefono"  name="telefono" value="<?= $telefono ?>"><br>
         <button type="submit">Insertar</button>
+        <a href="index.php">Volver</a>
     </form>
 </body>
 </html>

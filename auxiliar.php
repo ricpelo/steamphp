@@ -5,6 +5,11 @@ function conectar()
     return new PDO('pgsql:host=localhost;dbname=steam', 'steam', 'steam');
 }
 
+function obtener_get(string $par): ?string
+{
+    return isset($_GET[$par]) ? trim($_GET[$par]) : null;
+}
+
 function obtener_post(string $par): ?string
 {
     return isset($_POST[$par]) ? trim($_POST[$par]) : null;
@@ -22,10 +27,7 @@ function validar_dni($dni, &$error, ?PDO $pdo = null)
     } elseif (mb_strlen($dni) > 9) {
         $error[] = 'El DNI es demasiado largo';
     } else {
-        $pdo = $pdo ?? conectar();
-        $sent = $pdo->prepare('SELECT * FROM clientes WHERE dni = :dni');
-        $sent->execute([':dni' => $dni]);
-        if ($sent->fetch()) {
+        if (buscar_cliente_por_dni($dni, $pdo)) {
             $error[] = 'Ya existe un cliente con ese DNI';
         }
     }
@@ -82,5 +84,39 @@ function mostrar_errores(array $error): void
 {
     foreach ($error as $mensaje) { ?>
         <h3>Error: <?= $mensaje ?></h3><?php
+    }
+}
+
+function buscar_cliente($id, ?PDO $pdo = null): array|false
+{
+    $pdo = $pdo ?? conectar();
+    $sent = $pdo->prepare('SELECT * FROM clientes WHERE id = :id');
+    $sent->execute([':id' => $id]);
+    return $sent->fetch();
+}
+
+function buscar_cliente_por_dni($dni, ?PDO $pdo = null): array|false
+{
+    $pdo = $pdo ?? conectar();
+    $sent = $pdo->prepare('SELECT * FROM clientes WHERE dni = :dni');
+    $sent->execute([':dni' => $dni]);
+    return $sent->fetch();
+}
+
+function validar_dni_update($dni, $id, &$error, ?PDO $pdo = null)
+{
+    if ($dni === '') {
+        $error[] = 'El DNI es obligatorio';
+    } elseif (mb_strlen($dni) > 9) {
+        $error[] = 'El DNI es demasiado largo';
+    } else {
+        $pdo = $pdo ?? conectar();
+        $sent = $pdo->prepare('SELECT *
+                                 FROM clientes
+                                WHERE dni = :dni AND id != :id');
+        $sent->execute([':dni' => $dni, ':id' => $id]);
+        if ($sent->fetch()) {
+            $error[] = 'Ya existe un cliente con ese DNI';
+        }
     }
 }
