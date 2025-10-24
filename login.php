@@ -25,7 +25,6 @@
             echo "<h2>Error de credenciales incorrectas</h2>";
         }
     }
-
     ?>
     <form action="" method="post">
         <label for="nick">Nombre de usuario:</label>

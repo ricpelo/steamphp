@@ -38,7 +38,7 @@ DROP TABLE IF EXISTS videojuegos CASCADE;
 CREATE TABLE videojuegos (
     id                BIGSERIAL      PRIMARY KEY,
     nombre            VARCHAR(255)   NOT NULL,
-    salida            TIMESTAMP(0)     NOT NULL,
+    salida            TIMESTAMP(0)   NOT NULL,
     precio            NUMERIC(6,2),
     desarrolladora_id BIGINT         NOT NULL REFERENCES desarrolladoras (id)
 );

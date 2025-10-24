@@ -125,6 +125,7 @@ function cabecera()
 { ?>
     <div align="right">
         <?= $_SESSION['nick'] ?>
+        <a href="logout.php">Logout</a>
     </div>
     <hr><?php
 }
