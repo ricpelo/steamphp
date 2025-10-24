@@ -124,7 +124,7 @@ function validar_dni_update($dni, $id, &$error, ?PDO $pdo = null)
 function cabecera()
 { ?>
     <div align="right">
-        <?= $_SESSION['nick'] ?>
+        <?= hh($_SESSION['nick']) ?>
         <a href="logout.php">Logout</a>
     </div>
     <hr><?php
@@ -137,4 +137,9 @@ function esta_logueado()
         return false;
     }
     return true;
+}
+
+function hh($cadena)
+{
+    return htmlspecialchars($cadena ?? '');
 }
