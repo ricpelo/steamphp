@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +9,10 @@
 <body>
     <?php
     require 'auxiliar.php';
+
+    if (!esta_logueado()) {
+        return;
+    }
 
     $id = obtener_get('id');
 
@@ -67,6 +72,7 @@
     }
 
     ?>
+    <?php cabecera() ?>
     <form action="" method="post">
         <label for="dni">DNI:* </label>
         <input type="text" id="dni"       name="dni" value="<?= $dni ?>"><br>

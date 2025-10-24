@@ -120,3 +120,20 @@ function validar_dni_update($dni, $id, &$error, ?PDO $pdo = null)
         }
     }
 }
+
+function cabecera()
+{ ?>
+    <div align="right">
+        <?= $_SESSION['nick'] ?>
+    </div>
+    <hr><?php
+}
+
+function esta_logueado()
+{
+    if (!isset($_SESSION['nick'])) {
+        header('Location: login.php');
+        return false;
+    }
+    return true;
+}

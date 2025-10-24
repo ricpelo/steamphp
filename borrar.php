@@ -1,5 +1,15 @@
 <?php
+session_start();
+
 require 'auxiliar.php';
+
+if (!esta_logueado()) {
+    return;
+}
+
+if ($_SESSION['nick'] != 'admin') {
+    return volver_index();
+}
 
 // $id = trim($_POST['id']);
 $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
