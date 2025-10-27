@@ -10,10 +10,14 @@
     <?php
     require 'auxiliar.php';
 
+    $_csrf = obtener_post('_csrf');
     $nick = obtener_post('nick');
     $password = obtener_post('password');
 
-    if (isset($nick, $password)) {
+    if (isset($_csrf, $nick, $password)) {
+        if (!comprobar_csrf($_csrf)) {
+            return volver_index();
+        }
         $pdo = conectar();
         $sent = $pdo->prepare('SELECT * FROM usuarios WHERE nick = :nick');
         $sent->execute([':nick' => $nick]);
@@ -27,6 +31,7 @@
     }
     ?>
     <form action="" method="post">
+        <?php campo_csrf() ?>
         <label for="nick">Nombre de usuario:</label>
         <input type="text" id="nick" name="nick"><br>
         <label for="password">Contraseña:</label>

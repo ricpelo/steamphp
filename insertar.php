@@ -14,6 +14,7 @@
         return;
     }
 
+    $_csrf     = obtener_post('_csrf');
     $dni       = obtener_post('dni');
     $nombre    = obtener_post('nombre');
     $apellidos = obtener_post('apellidos');
@@ -21,7 +22,10 @@
     $codpostal = obtener_post('codpostal');
     $telefono  = obtener_post('telefono');
 
-    if (isset($dni, $nombre, $apellidos, $direccion, $codpostal, $telefono)) {
+    if (isset($_csrf, $dni, $nombre, $apellidos, $direccion, $codpostal, $telefono)) {
+        if (!comprobar_csrf($_csrf)) {
+            return volver_index();
+        }
         $pdo = conectar();
         $error = [];
         validar_dni($dni, $error, $pdo);
@@ -52,6 +56,7 @@
     }
     ?>
     <form action="" method="post">
+        <?php campo_csrf() ?>
         <label for="dni">DNI:* </label>
         <input type="text" id="dni"       name="dni" value="<?= hh($dni) ?>"><br>
         <label for="nombre">Nombre:* </label>
