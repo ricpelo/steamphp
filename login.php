@@ -24,6 +24,7 @@
         $fila = $sent->fetch();
         if ($fila && password_verify($password, $fila['password'])) {
             $_SESSION['nick'] = $nick;
+            $_SESSION['exito'] = 'Sesión iniciada correctamente';
             return volver_index();
         } else {
             echo "<h2>Error de credenciales incorrectas</h2>";

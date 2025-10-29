@@ -12,4 +12,5 @@ setcookie(
     $params['httponly']
 );
 session_destroy();
+$_SESSION['exito'] = 'Sesión finalizada correctamente';
 header('Location: login.php');

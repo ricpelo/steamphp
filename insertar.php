@@ -49,9 +49,11 @@
                 ':telefono'  => $telefono,
             ]);
             $pdo->commit();
+            $_SESSION['exito'] = 'El cliente se ha insertado correctamente';
             return volver_index();
         } else {
             $pdo->rollBack();
+            $_SESSION['fallo'] = 'No se ha podido insertar el cliente';
             cabecera();
             mostrar_errores($error);
         }
