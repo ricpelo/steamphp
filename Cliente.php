@@ -12,7 +12,14 @@ class Cliente
     public $codpostal;
     public $telefono;
 
-    public static PDO $pdo;
+    private static PDO $pdo;
+
+    public function __construct(array $fila = [])
+    {
+        foreach ($fila as $k => $v) {
+            $this->$k = $v;
+        }
+    }
 
     public static function buscar_por_id(string|int $id): ?Cliente
     {
@@ -46,7 +53,22 @@ class Cliente
         $sent->execute([':id' => $this->id]);
     }
 
-    private static function pdo(): PDO
+    public function guardar(): void
+    {
+        $pdo = Cliente::pdo();
+        $sent = $pdo->prepare('INSERT INTO clientes (dni, nombre, apellidos, direccion, codpostal, telefono)
+                               VALUES (:dni, :nombre, :apellidos, :direccion, :codpostal, :telefono)');
+        $sent->execute([
+            ':dni'       => $this->dni,
+            ':nombre'    => $this->nombre,
+            ':apellidos' => $this->apellidos,
+            ':direccion' => $this->direccion,
+            ':codpostal' => $this->codpostal,
+            ':telefono'  => $this->telefono,
+        ]);
+    }
+
+    public static function pdo(): PDO
     {
         Cliente::$pdo = Cliente::$pdo ?? conectar();
         return Cliente::$pdo;
