@@ -31,7 +31,7 @@
         $pdo->beginTransaction();
         $pdo->exec('LOCK TABLE clientes IN SHARE MODE;');
         $error = [];
-        validar_dni($dni, $error, $pdo);
+        validar_dni($dni, $error);
         validar_nombre($nombre, $error);
         validar_sanear_apellidos($apellidos, $error);
         validar_sanear_direccion($direccion, $error);
@@ -53,7 +53,7 @@
             return volver_index();
         } else {
             $pdo->rollBack();
-            $_SESSION['fallo'] = 'No se ha podido insertar el cliente';
+            // $_SESSION['fallo'] = 'No se ha podido insertar el cliente';
             cabecera();
             mostrar_errores($error);
         }
