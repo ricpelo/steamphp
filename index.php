@@ -10,6 +10,8 @@
     <?php
     require_once 'auxiliar.php';
     require_once 'Cliente.php';
+    require_once 'Guardable.php';
+    require_once 'Cadenas.php';
 
     if (!esta_logueado()) {
         return;

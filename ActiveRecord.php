@@ -1,7 +1,12 @@
 <?php
 
-abstract class ActiveRecord
+require_once 'Guardable.php';
+require_once 'Cadenas.php';
+
+abstract class ActiveRecord implements Guardable
 {
+    use Cadenas;
+
     public $id;
     private static PDO $pdo;
     protected static string $tabla;
