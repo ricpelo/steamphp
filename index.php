@@ -1,3 +1,4 @@
+<?php namespace App; ?>
 <?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,6 +13,8 @@
     require_once 'Cliente.php';
     require_once 'Guardable.php';
     require_once 'Cadenas.php';
+
+    use AR\Cliente;
 
     if (!esta_logueado()) {
         return;

@@ -1,5 +1,7 @@
 <?php
 
+namespace AR;
+
 require_once 'auxiliar.php';
 require_once 'ActiveRecord.php';
 

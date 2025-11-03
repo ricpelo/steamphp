@@ -1,5 +1,11 @@
 <?php
 
+namespace AR;
+
+use Utilidades\Cadenas;
+use Utilidades\Guardable;
+use PDO;
+
 require_once 'Guardable.php';
 require_once 'Cadenas.php';
 
@@ -37,9 +43,9 @@ abstract class ActiveRecord implements Guardable
 
     /**
      * Devuelve todos los objetos.
-     *
-     * @return static[]
-     */
+    *
+    * @return static[]
+    */
     public static function todos(): array
     {
         $pdo = static::pdo();
