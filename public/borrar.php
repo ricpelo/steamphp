@@ -5,7 +5,6 @@ use App\AR\Cliente;
 session_start();
 
 require '../vendor/autoload.php';
-require_once '../src/auxiliar.php';
 
 if (!esta_logueado()) {
     return;
