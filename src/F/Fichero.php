@@ -1,10 +1,8 @@
 <?php
 
-namespace F;
+namespace App\F;
 
-use \Utilidades\Cadenas;
-
-require_once 'Cadenas.php';
+use App\Utilidades\Cadenas;
 
 class Fichero
 {
