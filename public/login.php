@@ -1,11 +1,14 @@
 <?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
     <title>Login</title>
 </head>
+
 <body>
     <?php
     require '../vendor/autoload.php';
@@ -31,13 +34,20 @@
         }
     }
     ?>
-    <form action="" method="post">
-        <?php campo_csrf() ?>
-        <label for="nick">Nombre de usuario:</label>
-        <input type="text" id="nick" name="nick"><br>
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password"><br>
-        <button type="submit">Iniciar sesión</button>
-    </form>
+    <div class="container mx-auto mt-10">
+        <form class="max-w-sm mx-auto" action="" method="post">
+            <?php campo_csrf() ?>
+            <div class="mb-5">
+                <label for="nick" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre de usuario</label>
+                <input type="nick" id="nick" name="nick" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+            </div>
+            <div class="mb-5">
+                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
+                <input type="password" id="password" name="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+            </div>
+            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Iniciar sesión</button>
+        </form>
+    </div>
 </body>
+
 </html>
